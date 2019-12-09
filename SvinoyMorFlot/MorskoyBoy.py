@@ -72,13 +72,14 @@ def shoot(matrix):
     if type(matrix[x][y]) == type(test):
         matrix[x][y] = 'X'
         show_matrix(matrix)
-        # if check(matrix) == False:
-        #     shoot(matrix)
-        # else:
-        #     print ('GG')
+        if check(matrix) == False:
+            shoot(matrix)
+        else:
+            print ('GG')
     else:
         matrix[x][y] = "0"
         show_matrix(matrix)
+
 
 def check (matrix):
     zero = True
@@ -86,10 +87,10 @@ def check (matrix):
         for j in range(len(matrix[0])):
             if type(matrix[i][j]) == type(test):
                 zero = False
-    if zero == False:
-        shoot(matrix)
-    else:
-        print('GG')
+    # if zero == False:
+    #     shoot(matrix)
+    # else:
+    #     print('GG')
 
     return zero
 
@@ -98,20 +99,22 @@ def play(player_one, player_two):
     player = random.randint(1, 2)
 
     if player == 1:
-        print('Игрок', player, 'ходит')
         while True:
+            print('Игрок', player, 'ходит')
             shoot(player_two)
             if check(player_two) == True:
                 break
+            print('Игрок', player+1, 'ходит')
             shoot(player_one)
             if check(player_one) == True:
                 break
     elif player == 2:
-        print('Игрок', player, 'ходит')
         while True:
+            print('Игрок', player, 'ходит')
             shoot(player_one)
             if check(player_one) == True:
                 break
+            print('Игрок', player-1, 'ходит')
             shoot(player_two)
             if check(player_two) == True:
                 break
@@ -136,10 +139,10 @@ show_matrix(player_one)
 # f_o_f_ship = enter_ship(4, input("Введите направление "), player_one)
 # show_matrix(player_one)
 # s - второй игрок; o/t/th/f - первый, второй, третий, четвёртый по счёту корабль; o/t/th/f - однно\дву\трёх\четырёх палубный корабль
+
+print(' ')
 zer_matrix(player_two)
 show_matrix(player_two)
-
-print
 
 s_o_o_ship = enter_ship(1, "up", player_two)
 show_matrix(player_two)
@@ -150,4 +153,3 @@ show_matrix(player_two)
 # s_o_f_ship = enter_ship(4, input("Введите направление "), player_two)
 # show_matrix(player_two)
 play(player_one, player_two)
-shoot(player_one)
