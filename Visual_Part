@@ -1,0 +1,45 @@
+import pygame
+
+#Создание окна и его имени
+#Первичное обновление окна
+Game_Window = pygame.display.set_mode((1280, 720))
+pygame.display.set_caption('Sea battle')
+pygame.display. update()
+
+#Создание рабочей поверхности
+screen = pygame.Surface((1280, 720))
+
+#Заполнение переменной информацией ((координаты: x, y), имя файла)
+class Sprite:
+    def __init__(self, xpos, ypos, filename):
+        self.x = xpos
+        self.y = ypos
+        self.bitmap = pygame.image.load(filename)
+        self.bitmap.set_colorkey((0, 0, 0))
+    #Функция отображающая объект на рабочую поверхность
+    def render(self):
+        screen.blit(self.bitmap,(self.x, self.y))
+
+#Присвоение информации переменной
+#{Не может открыть файл}
+ship = Sprite(0, 0, 'Test1.png')
+
+#Управление рабочей поверхностью
+close_window = True
+while close_window:
+    for e in pygame.event.get():
+        if e.type == pygame.QUIT:
+            close_window = False
+
+    #Рабочая поверхность
+    screen.fill((212, 212, 212))
+
+    #Цвет сетки
+    Black = (0, 0, 0)
+    pygame.draw.aaline(screen, Black, [10, 10],[20, 20])
+
+    #Запуск обьекта на рабочую поверхность
+    ship.render()
+
+    Game_Window.blit(screen, (0, 0))
+    pygame.display.flip()
